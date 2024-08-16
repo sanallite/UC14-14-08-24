@@ -1,27 +1,37 @@
 /* Aula 20 - Navegação entre telas, Tab Navigation - Desafio 1, Tela de portfólio */
 
 import React from 'react';
-import { View, Text, Image, FlatList } from 'react-native';
+import { View, Text, Image, FlatList, ScrollView } from 'react-native';
 
 export default function Portfolio() {
     const projetos = [
-        { nome: 'Site Hololive English - Projeto Próprio Front-End (Incompleto) - Abril de 2023', imagem: '' },
-        { nome: 'Zerói - Projeto Integrador Front-End - Julho de 2023', imagem: '' },
-        { nome: 'Gerenciador de Tarefas - Aulas de PHP (Incompleto) - Janeiro de 2024', imagem: '' },
-        { nome: 'MKDG Player - Projeto em Grupo (Sabotado) - Fevereiro de 2024', imagem: '' },
-        { nome: 'Quitandão Senac - Projeto Integrador Back-End - Abril de 2024', imagem: '' },
-        { nome: 'App Fitness - Aulas de Flutterflow - Maio de 2024', imagem: '' },
-        { nome: 'Jogo das Idols - Aulas de React Native - Junho de 2024', imagem: '' }
+        { nome: 'Site Hololive English - Projeto Próprio Front-End (Incompleto) - Abril de 2023', imagem: require('../img/holoen.png') },
+        { nome: 'Zerói - Projeto Integrador Front-End - Julho de 2023', imagem: require('../img/zeroi.png') },
+        { nome: 'MKDG Player - Projeto em Grupo (Sabotado) - Fevereiro de 2024', imagem: require('../img/mkdg.png') },
+        { nome: 'Quitandão Senac - Projeto Integrador Back-End - Abril de 2024', imagem: require('../img/quitanda.png') },
+        { nome: 'App Fitness - Aulas de Flutterflow - Maio de 2024', imagem1: require('../img/fit1.png'), imagem2: require('../img/fit2.png') },
+        { nome: 'Jogo das Idols - Aulas de React Native - Junho de 2024', imagem1: require('../img/jogo1.png'), imagem2: require('../img/jogo2.png') }
     ]
 
     const renderizar = ({item}) => (
-        <View>
+        <View style={{ marginBottom: 20 }}>
             <Text>{item.nome}</Text>
+
+            <View>
+                <View>
+                    <View style={{ flexDirection: 'row' }} >
+                        { item.imagem && <Image source={ item.imagem } style={{ width: 300, height: 200 }} resizeMode='contain'></Image> }
+                        { item.imagem1 && <Image source={ item.imagem1 } style={{ width: 150, height: 300 }} resizeMode='contain'></Image> }
+                        { item.imagem2 && <Image source={ item.imagem2 } style={{ width: 150, height: 300 }} resizeMode='contain'></Image> }
+                        {/* Renderização condicional, explicar depois! */}
+                    </View>
+                </View>
+            </View>
         </View>
     )
         
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <View>
                 <View>
                     <Text>Cursos</Text>
@@ -34,12 +44,12 @@ export default function Portfolio() {
                 <Text>Técnico em Informática para Internet - Senac - 2023/24</Text>
             </View>
 
-            <View>
+            <View style={{ flex: 1 }}>
                 <View>
                     <Text>Projetos</Text>
                 </View>
 
-                <FlatList data={ projetos } /* keyExtractor={ (item, index) => [ item.nome, item[index]] } */ renderItem={ renderizar } />
+                <FlatList data={ projetos } keyExtractor={ (item, index) => [ item.nome, item[index]] } renderItem={ renderizar } contentContainerStyle={{ paddingBottom: 20 }} />
             </View>
         </View>
     )
