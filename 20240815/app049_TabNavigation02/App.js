@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from './componentes/Home';
 import Portfolio from './componentes/Portfolio';
+import Contato from './componentes/Contato';
 
 export default function App() {
   const Guias = createBottomTabNavigator();
@@ -18,6 +19,7 @@ export default function App() {
       <Guias.Navigator>
         <Guias.Screen name='Home' component={ Home } options={{ title: 'Início' }} />
         <Guias.Screen name='Portfolio' component={ Portfolio } options={{ title: 'Meu Portfólio' }}/>
+        <Guias.Screen name='Contato' component={ Contato } options={{ title: 'Entre em Contato' }}/>
       </Guias.Navigator>
     </NavigationContainer>
   )

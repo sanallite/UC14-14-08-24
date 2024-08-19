@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { View, Text, Image, FlatList, ScrollView } from 'react-native';
+import { estilo } from '../estilos';
 
 export default function Portfolio() {
     const projetos = [
@@ -14,42 +15,47 @@ export default function Portfolio() {
     ]
 
     const renderizar = ({item}) => (
-        <View style={{ marginBottom: 20 }}>
-            <Text>{item.nome}</Text>
+        <View>
+            <Text style={ estilo.nomeProjetos }>{item.nome}</Text>
 
-            <View>
-                <View>
-                    <View style={{ flexDirection: 'row' }} >
-                        { item.imagem && <Image source={ item.imagem } style={{ width: 300, height: 200 }} resizeMode='contain'></Image> }
-                        { item.imagem1 && <Image source={ item.imagem1 } style={{ width: 150, height: 300 }} resizeMode='contain'></Image> }
-                        { item.imagem2 && <Image source={ item.imagem2 } style={{ width: 150, height: 300 }} resizeMode='contain'></Image> }
-                        {/* Renderização condicional, explicar depois! */}
-                    </View>
+            <View style={{ alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row' }} >
+                    { item.imagem && <Image source={ item.imagem } style={{ width: 360, height: 230 }} resizeMode='contain'></Image> }
+                    { item.imagem1 && <Image source={ item.imagem1 } style={{ width: 175, height: 325 }} resizeMode='contain'></Image> }
+                    { item.imagem2 && <Image source={ item.imagem2 } style={{ width: 175, height: 325 }} resizeMode='contain'></Image> }
+                    {/* Renderização condicional, explicar depois! */}
                 </View>
             </View>
         </View>
     )
         
     return (
-        <View style={{ flex: 1 }}>
-            <View>
-                <View>
-                    <Text>Cursos</Text>
+        <View style={[ estilo.fundos, { backgroundColor: 'antiquewhite' } ]}>
+            <ScrollView style={ estilo.conteudos }>
+                <View style={ estilo.cabecalhos }>
+                    <Text style={ estilo.titulos }>Cursos</Text>
                 </View>
 
-                <Text>Assistente Administrativo - Senac - 2022</Text>
-                <Text>Fundamentos da Logística Empresarial - Prefeitura de Pinhais/Senac - 2022</Text>
-                <Text>Excel: Operações Essenciais - Senac - 2022</Text>
-                <Text>HTML e CSS - Senac - 2022</Text>
-                <Text>Técnico em Informática para Internet - Senac - 2023/24</Text>
-            </View>
-
-            <View style={{ flex: 1 }}>
                 <View>
-                    <Text>Projetos</Text>
+                    <Text style={ estilo.cursos }>Assistente Administrativo - Senac - 2022</Text>
+                    <Text style={ estilo.cursos }>Fundamentos da Logística Empresarial - Prefeitura de Pinhais/Senac - 2022</Text>
+                    <Text style={ estilo.cursos }>Excel: Operações Essenciais - Senac - 2022</Text>
+                    <Text style={ estilo.cursos }>HTML e CSS - Senac - 2022</Text>
+                    <Text style={ estilo.cursos }>Técnico em Informática para Internet - Senac - 2023/24</Text>
                 </View>
 
-                <FlatList data={ projetos } keyExtractor={ (item, index) => [ item.nome, item[index]] } renderItem={ renderizar } contentContainerStyle={{ paddingBottom: 20 }} />
+                <View style={{ flex: 1 }}>
+                    <View style={ estilo.cabecalhos }>
+                        <Text style={ estilo.titulos }>Projetos</Text>
+                    </View>
+
+                    <FlatList data={ projetos } keyExtractor={ (item, index) => [ item.nome, item[index]] } renderItem={ renderizar } contentContainerStyle={{ paddingBottom: 20 }} />
+                </View>
+            </ScrollView>
+
+            <View style={ estilo.rodapes }>
+                <Text style={ estilo.textoRodapes }>Márcio Teodoro</Text>
+                <Text style={ estilo.textoRodapes }>Agosto de 2024</Text>
             </View>
         </View>
     )
