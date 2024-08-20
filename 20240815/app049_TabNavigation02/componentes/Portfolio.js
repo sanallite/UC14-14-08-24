@@ -23,7 +23,7 @@ export default function Portfolio() {
                     { item.imagem && <Image source={ item.imagem } style={{ width: 360, height: 230 }} resizeMode='contain'></Image> }
                     { item.imagem1 && <Image source={ item.imagem1 } style={{ width: 175, height: 325 }} resizeMode='contain'></Image> }
                     { item.imagem2 && <Image source={ item.imagem2 } style={{ width: 175, height: 325 }} resizeMode='contain'></Image> }
-                    {/* Renderização condicional, explicar depois! */}
+                    {/* Formato de renderização condicional, que usa a condicional E (&&) para se caso uma das propriedades do objeto estiver definida, ou uma variável for verdadeira, será renderizado aqule componente, essa ferramenta é muito útil nesse caso, já que temos imagens com proporções diferentes, e alguns projetos tem mais de uma imagem. */}
                 </View>
             </View>
         </View>
@@ -50,6 +50,7 @@ export default function Portfolio() {
                     </View>
 
                     <FlatList data={ projetos } keyExtractor={ (item, index) => [ item.nome, item[index]] } renderItem={ renderizar } contentContainerStyle={{ paddingBottom: 20 }} />
+                    {/* O contentContainerStyle define o estilo do componente contâiner que envolve os componentes com todos os itens da lista */}
                 </View>
             </ScrollView>
 
