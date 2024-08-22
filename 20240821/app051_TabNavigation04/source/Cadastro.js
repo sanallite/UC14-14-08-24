@@ -100,7 +100,7 @@ export default function Cadastro() {
                     <Text>Resumo</Text>
                     { fotoEscolhida != 0 && <Image source={ fotoEscolhida } style={{ width: 50, height: 50 }}></Image> }
 
-                    <Text>Nome: {nomeAtual}</Text>
+                    <Text>Nome: {nome}</Text>
                     <Text>Email: {email}</Text>
 
                     { notificacoes && <Text>Notificações ativadas</Text> }

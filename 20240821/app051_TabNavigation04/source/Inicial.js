@@ -6,7 +6,9 @@ import { View, Text } from 'react-native';
 export default function Inicial() {
     return (
         <View>
-            <Text>Olá mundo</Text>
+            <Text>Bem Vindos!</Text>
+
+            <Text>Selecione uma das telas abaixo para continuar.</Text>
         </View>
     )
 }
