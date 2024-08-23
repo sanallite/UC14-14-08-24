@@ -2,13 +2,14 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable, FlatList } from 'react-native';
+import { estilo } from './estilo';
 
 export default function Comentarios() {
     const [ nome, setNome ] = useState('');
     const [ comentario, setComentario ] = useState('');
     /* Valores do campo de texto */
 
-    const [ arquivoComentarios, setNovoComentario ] = useState([]);
+    const [ arquivoComentarios, setNovoComentario ] = useState([ {nome_autor: 'Márcio', comentario: 'Olá'} ]);
     /* Vetor que armazena os comentários feitos */
 
     const publicarComent = (nome_param, comentario_param) => {
@@ -43,7 +44,7 @@ export default function Comentarios() {
 
     const renderizar = ( {item} ) => {
         return (
-            <View>
+            <View style={ estilo.comentarios }>
                 <Text>{ item.nome_autor } disse:</Text>
                 <Text>{ item.comentario }</Text>
             </View>
@@ -51,21 +52,21 @@ export default function Comentarios() {
     }
 
     return (
-        <View>
-            <View>
-                <Text>Deixe seus comentários aqui!</Text>
+        <View style={ estilo.fundo }>
+            <View style={ estilo.cabecalhos }>
+                <Text style={ estilo.textos }>Deixe seus comentários aqui!</Text>
             </View>
 
-            <View>
-                <TextInput placeholder='Escreva seu nome' value={ nome } onChangeText={ (nome_digitado) => setNome(nome_digitado) }/>
+            <View style={ estilo.espacamento }>
+                <TextInput style={ estilo.caixasTexto } placeholder='Escreva seu nome' value={ nome } onChangeText={ (nome_digitado) => setNome(nome_digitado) }/>
 
-                <TextInput placeholder='Escreva seu comentário' value={ comentario } onChangeText={ (comentario_digitado) => setComentario(comentario_digitado) } />
+                <TextInput style={ estilo.caixasTexto } placeholder='Escreva seu comentário' value={ comentario } onChangeText={ (comentario_digitado) => setComentario(comentario_digitado) } />
                 {/* A cada mudança de texto, o que foi digitado é enviado por parâmetro da função que atualiza o estado da variável, o atualizando para aquele valor. */}
             </View>
 
-            <View>
-                <Pressable onPress={ () => publicarComent(nome, comentario) }>
-                    <Text>Publicar</Text>
+            <View style={ estilo.viewPublicar }>
+                <Pressable style={ estilo.publicar_cadastrar } onPress={ () => publicarComent(nome, comentario) }>
+                    <Text style={{ color: 'white' }}>Publicar</Text>
                 </Pressable>
                 {/* Enviado por parâmetro os valores das variáveis de estados para serem adicionados ao vetor que serve como fonte de dados para a lista. */}
 

@@ -2,13 +2,14 @@
 
 import React from 'react';
 import { View, Text } from 'react-native';
+import { estilo } from './estilo';
 
 export default function Inicial() {
     return (
-        <View>
-            <Text>Bem Vindos!</Text>
+        <View style={ estilo.inicial }>
+            <Text style={ estilo.textosInicial }>Bem vindos!</Text>
 
-            <Text>Selecione uma das telas abaixo para continuar.</Text>
+            <Text style={ estilo.textosInicial }>Selecione uma das telas abaixo para continuar.</Text>
         </View>
     )
 }

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, SectionList, ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/Feather';
+import { estilo } from './estilo';
 
 export default function Galeria() {
     const secoes = [ 'Lugares', 'Fotos de Perfil', 'Carros' ];
@@ -13,7 +14,7 @@ export default function Galeria() {
         [ { foto1: require('./silverado.webp'), foto2: require('./challenger.jpg'), foto3: require('./fastback.jpg') } ]
     ]
 
-    const [ largura, setLargura ] = useState(200);
+    const [ largura, setLargura ] = useState(210);
 
     const secoesMapeadas = secoes.map( (secao, index) => ({
         title: secao,
@@ -26,13 +27,13 @@ export default function Galeria() {
 
     function exibirFotos({item}) {
         return (
-            <ScrollView horizontal={ true }>
+            <ScrollView horizontal={ true } style={{ paddingHorizontal: '1rem' }}>
                 <View style={{ flexDirection: 'row' }}>
-                    { item.foto1 && <Image source={item.foto1} style={{ width: largura, height: 225 }}></Image> }
+                    { item.foto1 && <Image source={item.foto1} style={{ width: largura, height: 225, marginRight: '0.625rem', borderRadius: 10 }}></Image> }
 
-                    { item.foto2 && <Image source={item.foto2} style={{ width: largura, height: 225 }}></Image> }
+                    { item.foto2 && <Image source={item.foto2} style={{ width: largura, height: 225, marginRight: '0.625rem', borderRadius: 10 }}></Image> }
 
-                    { item.foto3 && <Image source={item.foto3} style={{ width: largura, height: 225 }}></Image> }
+                    { item.foto3 && <Image source={item.foto3} style={{ width: largura, height: 225, borderRadius: 10 }}></Image> }
                 </View>
             </ScrollView>
             
@@ -41,35 +42,34 @@ export default function Galeria() {
 
     function exibirTitulos({ section }) {
         return (
-            <View>
-                <Text>{ section.title }</Text>
+            <View style={ estilo.espacamento }>
+                <Text style={ estilo.textos }>{ section.title }</Text>
             </View>
         )
     }
 
     return (
-        <View>
-            <View>
-                <Text>Visualize sua galeria de fotos!</Text>
+        <View style={ estilo.fundo }>
+            <View style={ estilo.cabecalhos }>
+                <Text style={ estilo.textos }>Visualize sua galeria de fotos!</Text>
             </View>
 
-            <View>
-                <SectionList 
-                    sections={ secoesMapeadas }
-                    renderItem={ exibirFotos }
-                    renderSectionHeader={ exibirTitulos }
-                />
-            </View>
+            <SectionList
+                sections={ secoesMapeadas }
+                renderItem={ exibirFotos }
+                renderSectionHeader={ exibirTitulos }
+                /* style={ estilo.listaSecao } */
+            />
 
-            <View>
-                <Text>Tamanho das fotos</Text>
+            <View style={ estilo.espacamento }>
+                <Text style={ estilo.textos }>Tamanho das fotos</Text>
 
-                <View style={{ flexDirection: 'row' }}>
-                    <Icon name='zoom-out' size={ 25 }/>
+                <View style={ estilo.viewSlider }>
+                    <Icon name='zoom-out' size={ 25 } style={ estilo.diminuirZoom }/>
 
-                    <Slider minimumValue={ 200 } maximumValue={ 400 } step={ 5 } value={ largura } onValueChange={ alterarLargura } style={{ flex: 1 }} />
+                    <Slider minimumValue={ 210 } maximumValue={ 400 } step={ 5 } value={ largura } onValueChange={ alterarLargura } style={{ flex: 1 }} />
 
-                    <Icon name='zoom-in' size={ 25 } color={ 'green' }/>
+                    <Icon name='zoom-in' size={ 25 } style={ estilo.aumentarZoom }/>
                 </View>
             </View>
         </View>

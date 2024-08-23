@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, Pressable, Switch } from 'react-native';
+import { estilo } from './estilo';
 
 export default function Cadastro() {
     const [ nome, setNome ] = useState('');
@@ -53,35 +54,35 @@ export default function Cadastro() {
     }
 
     return (
-        <View>
-            <View>
-                <Text>Faça seu cadastro conosco!</Text>
+        <View style={ estilo.fundo }>
+            <View style={ estilo.cabecalhos }>
+                <Text style={ estilo.textos }>Faça seu cadastro conosco!</Text>
             </View>
 
-            <View>
-                <View style={{ flexDirection: 'row' }}>
+            <View style={ estilo.espacamento }>
+                <View style={ estilo.viewEscolhaFotos }>
                     <Pressable onPress={ () => alterarFoto(1) }>
-                        <Image source={ foto1 }></Image>
+                        <Image source={ foto1 } style={ estilo.fotosPerfil }></Image>
                     </Pressable>
 
                     <Pressable onPress={ () => alterarFoto(2) }>
-                        <Image source={ foto2 }></Image>
+                        <Image source={ foto2 } style={ estilo.fotosPerfil }></Image>
                     </Pressable>
 
                     <Pressable onPress={ () => alterarFoto(3) }>
-                        <Image source={ foto3 }></Image>
+                        <Image source={ foto3 } style={ estilo.fotosPerfil }></Image>
                     </Pressable>
                 </View>
 
-                <Text>Escolha uma foto de perfil</Text>
+                <Text style={ estilo.textoFotosPerfil }>Escolha uma foto de perfil</Text>
 
-                <TextInput placeholder='Nome' value={ nome } onChangeText={ (novo) => setNome(novo) } />
+                <TextInput style={ estilo.caixasTexto } placeholder='Nome' value={ nome } onChangeText={ (novo) => setNome(novo) } />
                 
-                <TextInput placeholder='E-mail' value={ email } onChangeText={ (novo) => setEmail(novo) } keyboardType='email-address' />
+                <TextInput style={ estilo.caixasTexto } placeholder='E-mail' value={ email } onChangeText={ (novo) => setEmail(novo) } keyboardType='email-address' />
 
-                <View>
+                <View style={{ flexDirection: 'row' }}>
                     <Switch value={ notificacoes } onValueChange={ ligarNotificacoes } />
-                    <Text>Deseja receber notificações no seu e-mail?</Text>
+                    <Text style={{ marginLeft: 20 }}>Deseja receber notificações no seu e-mail?</Text>
                 </View>
             </View>
 
