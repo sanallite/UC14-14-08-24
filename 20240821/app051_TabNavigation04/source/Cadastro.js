@@ -7,7 +7,11 @@ import { estilo } from './estilo';
 export default function Cadastro() {
     const [ nome, setNome ] = useState('');
     const [ email, setEmail ] = useState('');
+    /* Caixas de texto */
+
     const [ notificacoes, setNotificacoes ] = useState(false);
+    /* Alternador */
+
     const [ fotoEscolhida, setFoto ] = useState(0);
 
     let foto1 = require('./loid.png');
@@ -15,10 +19,16 @@ export default function Cadastro() {
     let foto3 = require('./anya.png');
 
     const [ cadastrado, setCadastrado ] = useState(false);
+    /* Variável de estado que controla a exibição do resumo */
 
     const salvarCadastro = () => {
         if ( nome.trim() && email.trim() ) {
             setCadastrado(true)
+        }
+        /* Se o nome e o email digitados não estiverem vazios, a variável de estado será definida como verdadeira, o que permite os componentes que exibem o resumo sejam renderizados. */
+
+        else {
+            alert('Preencha todos os campos!');
         }
     }
 
@@ -27,6 +37,7 @@ export default function Cadastro() {
         setNome('');
         setEmail('');
     }
+    /* Limpando as caixas de texto e o resumo do cadastro. */
 
     function ligarNotificacoes() {
         if ( notificacoes === true ) {
@@ -37,6 +48,7 @@ export default function Cadastro() {
             setNotificacoes(true);
         }
     }
+    /* Função que muda o valor do alternador/switch */
 
     function alterarFoto(nova) {
         if ( nova === 1 ) {
@@ -52,6 +64,7 @@ export default function Cadastro() {
             /* setFoto( foto3 ); ) */
         }
     }
+    /* Função que muda a foto atribuida a variável de estado. */
 
     return (
         <View style={ estilo.fundo }>
@@ -86,30 +99,34 @@ export default function Cadastro() {
                 </View>
             </View>
 
-            <View>
-                <Pressable onPress={ salvarCadastro }>
-                    <Text>Cadastrar</Text>
+            <View style={ estilo.cadastrar_limpar }>
+                <Pressable onPress={ salvarCadastro } style={ estilo.publicar_cadastrar }>
+                    <Text style={{ color: 'white' }}>Cadastrar</Text>
                 </Pressable>
 
-                <Pressable onPress={ limparCadastro }>
-                    <Text>Limpar Dados</Text>
+                <Pressable onPress={ limparCadastro } style={ estilo.limpar_dados }>
+                    <Text style={{ color: '#22114c' }}>Limpar Dados</Text>
                 </Pressable>
             </View>
 
             { cadastrado && 
-                <View>
-                    <Text>Resumo</Text>
-                    { fotoEscolhida != 0 && <Image source={ fotoEscolhida } style={{ width: 50, height: 50 }}></Image> }
+                <View style={ estilo.viewResumo }>
+                    <Text style={[ estilo.textos, estilo.espaco_abaixo ]}>Resumo</Text>
+                    { fotoEscolhida != 0 && <Image source={ fotoEscolhida } style={[ estilo.fotosPerfil, estilo.espaco_abaixo ]}></Image> }
+                    {/* Será exibida apenas se uma foto foi escolhida */}
 
-                    <Text>Nome: {nome}</Text>
-                    <Text>Email: {email}</Text>
+                    <Text style={ estilo.espaco_abaixo }>Nome: {nome}</Text>
+                    <Text style={ estilo.espaco_abaixo }>Email: {email}</Text>
 
-                    { notificacoes && <Text>Notificações ativadas</Text> }
-                    { notificacoes === false && <Text>Notificações desativadas</Text> }
+                    { notificacoes && <Text style={ estilo.espaco_abaixo }>Notificações ativadas</Text> }
+                    { notificacoes === false && <Text style={ estilo.espaco_abaixo }>Notificações desativadas</Text> }
+                    {/* Verificador se o alternador foi ativado ou não */}
 
-                    { fotoEscolhida === 0 && <Text>Nenhuma foto escolhida</Text> }
+                    { fotoEscolhida === 0 && <Text style={ estilo.espaco_abaixo }>Nenhuma foto escolhida</Text> }
+                    {/* Só será exibido se nenhuma foto foi escolhida. */}
                 </View>
             }
+            {/* Só serão exibidos caso o usuário for considerado cadastrado. */}
         </View>
     )
 }

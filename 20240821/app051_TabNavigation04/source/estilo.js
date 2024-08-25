@@ -65,7 +65,8 @@ const estilo = StyleSheet.create({
 
     publicar_cadastrar: {
         backgroundColor: '#22114c',
-        padding: '0.625rem'
+        padding: '0.625rem',
+        borderRadius: 5
     },
 
     comentarios: {
@@ -93,6 +94,30 @@ const estilo = StyleSheet.create({
         textAlign: 'center',
         marginVertical: '0.625rem',
         fontSize: '1.1rem'
+    },
+
+    cadastrar_limpar: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+
+    limpar_dados: {
+        padding: '0.625rem',
+        borderColor: '#22114c',
+        borderWidth: 1,
+        borderRadius: 5
+    },
+
+    viewResumo: {
+        margin: '1rem',
+        borderColor: 'lightgray',
+        borderWidth: 2,
+        padding: '0.625rem'
+    },
+
+    espaco_abaixo: {
+        marginBottom: '0.625rem'
     }
 })
 
