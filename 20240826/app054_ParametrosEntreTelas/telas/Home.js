@@ -41,6 +41,10 @@ export default function Home() {
                 {/* Usando um novo componente semelhante ao Pressable, o Button precisa ter um título, uma cor e o método onPress, que nesse caso chama uma função que chama o método de navegação para ir para outra tela, com passagem de parâmetros. */}
             </View>
             {/* Aparentemente a prop style não se aplica ao Button... */}
+
+            <View style={ style.margem }>
+                <Button title='Ir para a tela Acesso' color='red' onPress={ () => nav.navigate('Acesso') }/>
+            </View>
         </View>
     )
 }
