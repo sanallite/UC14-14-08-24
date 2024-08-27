@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './telas/Home';
 import Details from './telas/Details';
 import Login from './telas/Login';
+import Cadastro from './telas/Cadastro';
 
 export default function App() {
   const Pilha = createNativeStackNavigator();
@@ -19,6 +20,8 @@ export default function App() {
         <Pilha.Screen name='Detalhes' component={ Details } options={{ headerShown: false }}/>
 
         <Pilha.Screen name='Acesso' component={ Login } options={{ headerShown: false }}/>
+
+        <Pilha.Screen name='Cadastro' component={ Cadastro } /* options={{ headerShown: false }} */ />
       </Pilha.Navigator>
     </NavigationContainer>
   )

@@ -27,7 +27,7 @@ export default function Details() {
         /* Se a tela de Detalhes for a rota inicial, não vai ter pra onde voltar, então não vai acontecer nada. */
 
         nav.navigate('Principal', { nome: nomeDigitado });
-        /* Navegação utilizando a passagem de parâmetros, com a escolha da tela que vai ser navegada e envia um objeto que contém um atributo e um valor que serão recebidos naquela tela. */
+        /* Navegação utilizando a passagem de parâmetros, com a escolha da tela que vai ser navegada e envia um objeto que contém um atributo e um valor que serão recebidos naquela tela. Importante notar que a navegação vai enviar o nome digitado nessa tela, não mais o recebido da tela Login! */
     }
 
     const capturarNome = (novo) => {
@@ -47,6 +47,8 @@ export default function Details() {
             <View>
                 <View style={ style.nome_sobrenome }>
                     <Text>{ nomeRecebido }</Text>
+                    {/* Nome recebido da tela home, que foi recebido da tela Login, fazendo alusão a uma sessão de usuário */}
+
                     <Text>{ sobrenome }</Text>
                 </View>
 

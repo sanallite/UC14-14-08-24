@@ -37,8 +37,8 @@ export default function Home() {
             </Text>
 
             <View style={ style.margem }>
-                <Button title='Ir para a tela Detalhes' color='#841584' onPress={ () => nav.navigate('Detalhes', { nome: 'Márcio', sobrenome: 'Teodoro', data: 'Agosto de 2024' }) }/>
-                {/* Usando um novo componente semelhante ao Pressable, o Button precisa ter um título, uma cor e o método onPress, que nesse caso chama uma função que chama o método de navegação para ir para outra tela, com passagem de parâmetros. */}
+                <Button title='Ir para a tela Detalhes' color='#841584' onPress={ () => nav.navigate('Detalhes', { nome: parametros.nome, sobrenome: 'Teodoro', data: 'Agosto de 2024' }) }/>
+                {/* Usando um novo componente semelhante ao Pressable, o Button precisa ter um título, uma cor e o método onPress, que nesse caso chama uma função que chama o método de navegação para ir para outra tela, com passagem de parâmetros. O valor do atributo nome é o valor recebido por parâmetro da tela Login */}
             </View>
             {/* Aparentemente a prop style não se aplica ao Button... */}
 
