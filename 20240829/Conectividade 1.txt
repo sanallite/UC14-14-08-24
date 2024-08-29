@@ -1,0 +1,190 @@
+1. Sensores
+Para sensores, como o acelerômetro e o giroscópio, você pode usar o pacote expo-sensors se estiver usando Expo, ou o react-native-sensors se estiver usando um projeto React Native CLI.
+
+
+Usando Expo:
+
+
+jsx
+Copiar código
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { Accelerometer } from 'expo-sensors';
+
+const App = () => {
+  const [data, setData] = useState({ x: 0, y: 0, z: 0 });
+
+  useEffect(() => {
+    const subscription = Accelerometer.addListener(accelerometerData => {
+      setData(accelerometerData);
+    });
+
+    // Cleanup function to remove subscription when component unmounts
+    return () => subscription.remove();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Text>X: {data.x.toFixed(2)}</Text>
+      <Text>Y: {data.y.toFixed(2)}</Text>
+      <Text>Z: {data.z.toFixed(2)}</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default App;
+
+
+Usando React Native CLI:
+
+jsx
+Copiar código
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { Accelerometer } from 'react-native-sensors';
+
+const App = () => {
+  const [data, setData] = useState({ x: 0, y: 0, z: 0 });
+
+  useEffect(() => {
+    const subscription = Accelerometer.subscribe((accelerometerData) => {
+      setData(accelerometerData);
+    });
+
+    // Cleanup function to remove subscription when component unmounts
+    return () => subscription.unsubscribe();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Text>X: {data.x.toFixed(2)}</Text>
+      <Text>Y: {data.y.toFixed(2)}</Text>
+      <Text>Z: {data.z.toFixed(2)}</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default App;
+
+
+
+2. NFC
+Para NFC, você pode usar o pacote react-native-nfc-manager.
+
+jsx
+Copiar código
+import React, { useEffect } from 'react';
+import { Button, Text, View, StyleSheet } from 'react-native';
+import NfcManager, { NfcTech } from 'react-native-nfc-manager';
+
+const App = () => {
+  useEffect(() => {
+    NfcManager.start();
+    return () => {
+      NfcManager.stop();
+      NfcManager.setEventListenerOff();
+    };
+  }, []);
+
+  const startScan = async () => {
+    try {
+      await NfcManager.requestTechnology(NfcTech.NfcA);
+      const tag = await NfcManager.getTag();
+      console.log(tag);
+    } catch (ex) {
+      console.warn(ex);
+    } finally {
+      NfcManager.setEventListenerOff();
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Button title="Start NFC Scan" onPress={startScan} />
+      <Text>Open your NFC-enabled device to scan.</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default App;
+
+
+
+3. Bluetooth
+Para Bluetooth, você pode usar o pacote react-native-ble-plx.
+
+jsx
+Copiar código
+import React, { useEffect, useState } from 'react';
+import { Button, Text, View, StyleSheet } from 'react-native';
+import { BleManager } from 'react-native-ble-plx';
+
+const App = () => {
+  const [manager] = useState(new BleManager());
+  const [scanStarted, setScanStarted] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      manager.destroy();
+    };
+  }, []);
+
+  const startScan = () => {
+    manager.startDeviceScan(null, null, (error, device) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      console.log(device.name); // Print device name
+      if (device.name) {
+        manager.stopDeviceScan();
+      }
+    });
+    setScanStarted(true);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Button title="Start Bluetooth Scan" onPress={startScan} />
+      {scanStarted && <Text>Scanning for devices...</Text>}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default App;
+
+
+Esses exemplos fornecem uma base para trabalhar com sensores, NFC e Bluetooth em um aplicativo React Native. Você pode adaptar e expandir esses exemplos conforme suas necessidades específicas e as funcionalidades que deseja implementar.

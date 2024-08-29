@@ -1,0 +1,41 @@
+import React, { useEffect } from 'react';
+import { View, Text, Button, Alert } from 'react-native';
+import WifiManager from 'react-native-wifi-reborn';
+
+const App = () => {
+  useEffect(() => {
+    // Verifique se a biblioteca foi inicializada corretamente
+    WifiManager.isEnabled()
+      .then((isEnabled) => console.log('Wi-Fi Enabled:', isEnabled))
+      .catch((error) => console.error(error));
+  }, []);
+
+  const scanWifi = () => {
+    WifiManager.reScanAndLoadWifiList()
+      .then((wifiList) => {
+        console.log('Wi-Fi List:', wifiList);
+        Alert.alert('Wi-Fi List', JSON.stringify(wifiList));
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const connectToWifi = () => {
+    WifiManager.connectToProtectedSSID('yourSSID', 'yourPassword', false)
+      .then(() => {
+        Alert.alert('Connected', 'Successfully connected to the Wi-Fi');
+      })
+      .catch((error) => {
+        Alert.alert('Error', 'Failed to connect to the Wi-Fi');
+        console.error(error);
+      });
+  };
+
+  return (
+    <View>
+      <Button title="Scan Wi-Fi" onPress={scanWifi} />
+      <Button title="Connect to Wi-Fi" onPress={connectToWifi} />
+    </View>
+  );
+};
+
+export default App;

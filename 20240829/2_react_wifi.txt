@@ -1,0 +1,36 @@
+ Escolha de uma Biblioteca
+Você pode usar bibliotecas de terceiros para acessar e gerenciar o Wi-Fi. Algumas bibliotecas populares são:
+
+react-native-wifi-reborn: Oferece acesso ao estado do Wi-Fi e à lista de redes disponíveis.
+react-native-wifi-manager: Permite gerenciar redes Wi-Fi e realizar outras operações relacionadas.
+2. Instalar a Biblioteca
+Para instalar a biblioteca, use o npm ou yarn. Por exemplo, para react-native-wifi-reborn:
+
+bash
+Copiar código
+npm install react-native-wifi-reborn
+Ou, se estiver usando o Yarn:
+
+bash
+Copiar código
+yarn add react-native-wifi-reborn
+3. Configuração do Projeto
+Depois de instalar a biblioteca, você precisa configurar o projeto.
+
+Para iOS:
+Adicione permissões necessárias no arquivo Info.plist. Você precisará adicionar chaves como NSLocationWhenInUseUsageDescription e NSLocationAlwaysUsageDescription se estiver acessando informações de localização.
+
+xml
+Copiar código
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Precisa de acesso à localização para verificar redes Wi-Fi.</string>
+Execute pod install na pasta ios para instalar dependências.
+
+Para Android:
+Adicione permissões no arquivo AndroidManifest.xml:
+
+xml
+Copiar código
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
