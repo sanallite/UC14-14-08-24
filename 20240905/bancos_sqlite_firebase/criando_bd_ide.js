@@ -14,7 +14,7 @@ function execute(command, params, method = "all") {
     });
 }
 
-const db = new SQLite.Database("./banco_sqlite.txt", SQLite.OPEN_READWRITE
+const db = new SQLite.Database("./banco_sqlite.txt", SQLite.OPEN_READWRITE, (err) => {
     if ( err )
         return console.log("Erro ao conectar ao banco "+ err.message);
 });
