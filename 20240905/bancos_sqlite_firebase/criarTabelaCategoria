@@ -1,7 +1,0 @@
-/*  Esse arquivo não precisa ter a extensão sql, mas com ela fica melhor a exibição na IDE */
-CREATE TABLE CATEGORIA (
-	ID_CATEGORIA INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	CATEGORIA VARCHAR(50),
-	ICONE VARCHAR(1000),
-	ORDEM INTEGER
-);
