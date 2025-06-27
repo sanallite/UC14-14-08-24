@@ -1,3 +1,9 @@
-Segunda parte das aulas de desenvolvimento mobile, seguindo a divisão por unidades currículares, UCs, do meu curso técnico.
+# Curso Técnico - UC14 - Desenvolvimento Mobile
 
-Aplicatiovs feitos utilizando as bibliotecas do React Native e Expo.
+Segunda unidade curricular do módulo referente a desenvolvimento mobile no meu curso técnico no Senac.
+
+Projetos React Native com o framework Expo.
+
+## Conteúdo
+* Navegação de telas/componentes utilizando a biblioteca React Navigation.
+* Introdução a passagem de parâmetros entre componentes.
